@@ -1,0 +1,19 @@
+<main>
+  <header>
+    <div class="internal_container">
+      <div>
+        <img [src]="userProfile?.userProfile" [alt]="userProfile?.name">
+        <p><b>Olá</b> {{userProfile?.name}} 👋</p>
+      </div>
+
+      <ul>
+        <li><a href=""><b>Perfil</b></a></li>
+        <li><a routerLink="/" class="logOut">LogOut</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="main_section">
+    <app-card-quiz></app-card-quiz>
+  </div>
+</main>

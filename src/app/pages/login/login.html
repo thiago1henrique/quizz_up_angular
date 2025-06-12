@@ -2,6 +2,7 @@
   <div class="left_container">
     <h1>Login</h1>
     <p>Utilize seu email e senha!</p>
+    <p>Não tem uma conta? <a routerLink="/cadastro">Crie uma!</a></p>
 
     <div class="input_container">
       <app-custon-input type="email" label="Email"></app-custon-input>
@@ -9,7 +10,7 @@
     </div>
 
     <div>
-      <app-custon-button texto="Login"></app-custon-button>
+      <app-custon-button texto="Login" rota="/home"></app-custon-button>
     </div>
   </div>
 

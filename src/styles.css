@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   background-image: url("../public/bg.svg");
-  color: #16161d
+  color: #16161d;
+
+}
+
+a {
+  text-decoration: none;
 }
 
 html, body { height: 100%; }
