@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Input } from './input';
+import { CustonButton } from './custon-button';
 
-describe('Input', () => {
-  let component: Input;
-  let fixture: ComponentFixture<Input>;
+describe('CustonButton', () => {
+  let component: CustonButton;
+  let fixture: ComponentFixture<CustonButton>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Input]
+      imports: [CustonButton]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Input);
+    fixture = TestBed.createComponent(CustonButton);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

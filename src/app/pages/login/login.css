@@ -20,12 +20,17 @@ h1 {
 p {
   font-size: 1.2rem;
   line-height: 2rem;
+  padding-bottom: 2rem;
 }
 
 .container_buttons {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+.input_container {
+  width: 100%;
 }
 
 @media (max-width: 950px) {
