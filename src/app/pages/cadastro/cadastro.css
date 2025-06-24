@@ -12,6 +12,15 @@
   background-image: url("https://miro.medium.com/v2/resize:fit:1400/0*wepxA0Twy61aP79u");
 }
 
+.error-message {
+  display: flex;
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 h1 {
   font-size: 3rem;
   line-height: 4rem;

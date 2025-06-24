@@ -46,9 +46,33 @@ export class Cadastro {
     this.loading = true;
     this.errorMessage = '';
 
+    const email = this.cadastroForm.value.email;
+
+    // Primeiro verifica se o email já existe
+    this.http.get<any[]>(`http://localhost:3000/profile?email=${email}`).subscribe({
+      next: (users) => {
+        if (users.length > 0) {
+          this.loading = false;
+          this.errorMessage = 'Este e-mail já está cadastrado.';
+          return;
+        }
+
+        // Se o email não existe, cria o novo usuário
+        this.createNewUser();
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Erro ao verificar e-mail:', err);
+        this.errorMessage = 'Erro ao verificar e-mail. Tente novamente.';
+      }
+    });
+  }
+
+  private createNewUser() {
     const newUser = {
       ...this.cadastroForm.value,
-      userProfile: 'https://via.placeholder.com/150' // Imagem padrão
+      userProfile: 'https://via.placeholder.com/150',
+      id: this.generateId() // Gerar um ID único
     };
 
     this.http.post<any>('http://localhost:3000/profile', newUser).subscribe({
@@ -61,11 +85,12 @@ export class Cadastro {
         this.loading = false;
         console.error('Erro no cadastro:', err);
         this.errorMessage = 'Erro ao cadastrar. Tente novamente.';
-        if (err.status === 409) {
-          this.errorMessage = 'Este email já está cadastrado.';
-        }
       }
     });
+  }
+
+  private generateId(): string {
+    return Math.floor(Math.random() * 10000).toString();
   }
 
   private markFormAsTouched() {
