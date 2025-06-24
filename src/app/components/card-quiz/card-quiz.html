@@ -1,11 +1,29 @@
 <div class="card-container">
-  <div class="card" *ngFor="let quizz of quizzes">
+  @for (quizz of quizzes; track quizz.id) {
+    <div class="card">
+      <img [src]="quizz.image" [alt]="'Logo do ' + quizz.title">
+      <h2>{{ quizz.title }}</h2>
+      <p>{{ quizz.description }}</p>
 
-    <img [src]="quizz.image" [alt]="'Logo do ' + quizz.title">
+      <div class="card-actions">
+        <button class="card-button">Fazer</button>
 
-    <h2>{{ quizz.title }}</h2>
-    <p>{{ quizz.description }}</p>
+        @if (isAdmin) {
+          <button
+            class="delete-button"
+            (click)="deleteQuiz(quizz.id)"
+            [disabled]="isDeleting(quizz.id)">
 
-    <button class="card-button">Fazer</button>
-  </div>
+            @if (isDeleting(quizz.id)) {
+              <mat-spinner diameter="20" color="accent"></mat-spinner>
+            } @else {
+              Excluir
+            }
+          </button>
+        }
+      </div>
+    </div>
+  } @empty {
+    <p class="no-quizzes">Nenhum quiz disponível no momento.</p>
+  }
 </div>

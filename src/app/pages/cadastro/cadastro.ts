@@ -48,7 +48,6 @@ export class Cadastro {
 
     const email = this.cadastroForm.value.email;
 
-    // Primeiro verifica se o email já existe
     this.http.get<any[]>(`http://localhost:3000/profile?email=${email}`).subscribe({
       next: (users) => {
         if (users.length > 0) {
@@ -57,7 +56,6 @@ export class Cadastro {
           return;
         }
 
-        // Se o email não existe, cria o novo usuário
         this.createNewUser();
       },
       error: (err) => {
@@ -72,7 +70,7 @@ export class Cadastro {
     const newUser = {
       ...this.cadastroForm.value,
       userProfile: 'https://via.placeholder.com/150',
-      id: this.generateId() // Gerar um ID único
+      id: this.generateId()
     };
 
     this.http.post<any>('http://localhost:3000/profile', newUser).subscribe({

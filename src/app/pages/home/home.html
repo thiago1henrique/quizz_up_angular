@@ -2,7 +2,13 @@
   <header>
     <div class="internal_container">
       <div>
-        <img [src]="userProfile?.userProfile" [alt]="userProfile?.name">
+        @if (userProfile?.userProfile) {
+          <img [src]="userProfile.userProfile" [alt]="userProfile.name">
+        } @else {
+          <div class="avatar-fallback">
+            {{ getInitial(userProfile?.name) }}
+          </div>
+        }
         <p><b>Olá</b> {{userProfile?.name}} 👋</p>
       </div>
 

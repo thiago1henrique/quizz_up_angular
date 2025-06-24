@@ -15,10 +15,8 @@ import { CardQuiz } from '../../components/card-quiz/card-quiz';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-// A PALAVRA-CHAVE 'EXPORT' É ESSENCIAL
 export class HomeComponent implements OnInit {
-
-  userProfile: UserProfile | null = null;
+  userProfile: (UserProfile & { isAdmin?: boolean }) | null = null;
 
   constructor(
     private profileService: ProfileService,
