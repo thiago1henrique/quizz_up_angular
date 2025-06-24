@@ -4,7 +4,7 @@ import { Splashscreen } from './pages/splashscreen/splashscreen';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Splashscreen],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

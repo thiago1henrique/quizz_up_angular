@@ -1,27 +1,41 @@
-import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {CommonModule} from '@angular/common';
-import {ProfileService, UserProfile} from '../../services/ProfileService';
-import {CardQuiz} from '../../components/card-quiz/card-quiz';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth';
+import { ProfileService, UserProfile } from '../../services/ProfileService';
+import { CardQuiz } from '../../components/card-quiz/card-quiz';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
-    RouterLink, CommonModule, CardQuiz
+    CommonModule,
+    CardQuiz
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+// A PALAVRA-CHAVE 'EXPORT' É ESSENCIAL
+export class HomeComponent implements OnInit {
+
   userProfile: UserProfile | null = null;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(
+    private profileService: ProfileService,
+    private authService: AuthService
+  ) {}
 
-  // ngOnInit é o lugar perfeito para buscar dados iniciais
   ngOnInit(): void {
-    this.profileService.getProfileData().subscribe(data => {
-      // Quando os dados chegarem, armazenamos na nossa propriedade
-      this.userProfile = data;
-    });
+    const userId = this.authService.getUserId();
+
+    if (userId) {
+      this.profileService.getUserById(userId).subscribe(data => {
+        this.userProfile = data;
+      });
+    }
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
