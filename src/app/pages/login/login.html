@@ -1,6 +1,7 @@
 <main class="container">
   <div class="left_container">
     <h1>Login</h1>
+    <p>Não tem uma conta? <a routerLink="/cadastro">Crie uma!</a></p>
     <p>Utilize seu email e senha!</p>
 
     <div *ngIf="loginError" class="error-message">
@@ -27,8 +28,6 @@
         </app-custon-button>
       </div>
     </form>
-
-    <p>Não tem uma conta? <a routerLink="/cadastro">Crie uma!</a></p>
   </div>
   <div class="right_container"></div>
 </main>

@@ -1,11 +1,15 @@
-<mat-form-field appearance="fill" class="custom-form-field">
-  <mat-label>{{ label }}</mat-label>
+<mat-form-field class="teste" appearance="outline">
+  <mat-label class="label_input">{{ label }}</mat-label>
   <input
+    class="input_custom_test"
     matInput
-    [placeholder]="placeholder"
     [type]="type"
-    [disabled]="isDisabled"
-    [(ngModel)]="value"
-    (ngModelChange)="onChange($event)"
-    (blur)="onTouched()">
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onChange($any($event.target).value)"
+    (blur)="onTouched()"
+    [disabled]="isDisabled">
 </mat-form-field>
+@if (error) {
+  <div class="error-message">{{ error }}</div>
+}

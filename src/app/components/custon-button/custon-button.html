@@ -1,7 +1,16 @@
-<ng-container *ngIf="rota; else actionButton">
-  <a class="buttonCuston" [routerLink]="rota" mat-button [disabled]="disabled">{{ texto }}</a>
-</ng-container>
+<button
+  mat-raised-button
+  color="primary"
+  [type]="type"
+  [disabled]="disabled || loading"
+  [routerLink]="rota ? rota : null">
 
-<ng-template #actionButton>
-  <button class="buttonCuston" [type]="type" mat-button [disabled]="disabled">{{ texto }}</button>
-</ng-template>
+  @if (!loading) {
+    <span>{{ texto }}</span>
+  }
+  @if (loading) {
+    <span>
+      <mat-spinner diameter="20" color="accent"></mat-spinner>
+    </span>
+  }
+</button>

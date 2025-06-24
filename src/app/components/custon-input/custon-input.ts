@@ -2,11 +2,13 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {CommonModule} from '@angular/common';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-custon-input',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, CommonModule, MatProgressSpinnerModule ],
   templateUrl: './custon-input.html',
   styleUrl: './custon-input.css',
   providers: [
@@ -21,6 +23,7 @@ export class CustonInput implements ControlValueAccessor {
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() label: string = '';
+  @Input() error: string = '';
 
   value: any = '';
   isDisabled: boolean = false;

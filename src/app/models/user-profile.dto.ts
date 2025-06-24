@@ -1,5 +1,5 @@
-export interface UserProfile {
-  id: string; // Remova o '?' para indicar que o ID é obrigatório
+export interface User {
+  id: string;
   userProfile: string;
   name: string;
   email: string;
