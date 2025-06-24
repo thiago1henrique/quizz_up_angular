@@ -1,3 +1,7 @@
-<section>
-  <a class="buttonCuston" matButton [routerLink]="rota">{{texto}}</a>
-</section>
+<ng-container *ngIf="rota; else actionButton">
+  <a class="buttonCuston" [routerLink]="rota" mat-button [disabled]="disabled">{{ texto }}</a>
+</ng-container>
+
+<ng-template #actionButton>
+  <button class="buttonCuston" [type]="type" mat-button [disabled]="disabled">{{ texto }}</button>
+</ng-template>

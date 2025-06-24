@@ -1,6 +1,11 @@
-<form class="example-form">
-  <mat-form-field appearance="fill" class="example-full-width custom-form-field">
-    <mat-label>{{label}}</mat-label>
-    <input matInput [placeholder]="placeholder" [type]="type" value="">
-  </mat-form-field>
-</form>
+<mat-form-field appearance="fill" class="custom-form-field">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [placeholder]="placeholder"
+    [type]="type"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+    (blur)="onTouched()">
+</mat-form-field>
