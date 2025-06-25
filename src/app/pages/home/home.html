@@ -1,22 +1,28 @@
 <main>
   <header>
-    <div class="internal_container">
-      <div>
-        @if (userProfile?.userProfile) {
-          <img [src]="userProfile.userProfile" [alt]="userProfile.name">
-        } @else {
-          <div class="avatar-fallback">
-            {{ getInitial(userProfile?.name) }}
-          </div>
-        }
-        <p><b>Olá</b> {{userProfile?.name}} 👋</p>
-      </div>
+    @if (userProfile) {
+      <div class="internal_container">
+        <div class="internal_profile">
+          @if (userProfile.userProfile) {
+            <img [src]="userProfile.userProfile" [alt]="userProfile.name">
+          } @else {
+            <div class="avatar-fallback">
+              {{ getInitial(userProfile.name) }}
+            </div>
+          }
+          <p><b>Olá</b> {{ userProfile.name }} 👋</p>
+        </div>
 
-      <ul>
-        <li><a href=""><b>Perfil</b></a></li>
-        <li><a style="cursor: pointer" (click)="logout()" class="logOut">LogOut</a></li>
-      </ul>
-    </div>
+        <ul>
+          <li><a routerLink="/perfil"><b>Perfil</b></a></li>
+          <li><a style="cursor: pointer" (click)="logout()" class="logOut">LogOut</a></li>
+        </ul>
+      </div>
+    } @else {
+      <div class="internal_container">
+        <p>Carregando perfil...</p>
+      </div>
+    }
   </header>
 
   <div class="main_section">

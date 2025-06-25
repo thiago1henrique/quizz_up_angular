@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { ProfileService, UserProfile } from '../../services/ProfileService';
 import { CardQuiz } from '../../components/card-quiz/card-quiz';
@@ -13,14 +13,16 @@ import { CardQuiz } from '../../components/card-quiz/card-quiz';
     CardQuiz
   ],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css']
 })
 export class HomeComponent implements OnInit {
-  userProfile: (UserProfile & { isAdmin?: boolean }) | null = null;
+
+  userProfile: UserProfile | null = null;
 
   constructor(
     private profileService: ProfileService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,14 @@ export class HomeComponent implements OnInit {
         this.userProfile = data;
       });
     }
+  }
+
+  // Função para pegar a inicial do nome
+  getInitial(name: string | undefined | null): string {
+    if (!name) {
+      return '?';
+    }
+    return name.charAt(0).toUpperCase();
   }
 
   logout(): void {
