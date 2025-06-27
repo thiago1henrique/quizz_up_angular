@@ -28,5 +28,5 @@ export const routes: Routes = [
     title: 'Home | QuizzUp',
     canActivate: [authGuard]
   },
-
+  
 ];

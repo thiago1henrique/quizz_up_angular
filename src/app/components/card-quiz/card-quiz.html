@@ -1,19 +1,19 @@
 <div class="card-container">
   @for (quizz of quizzes; track quizz.id) {
     <div class="card">
-      <img [src]="quizz.image" [alt]="'Logo do ' + quizz.title">
       <h2>{{ quizz.title }}</h2>
       <p>{{ quizz.description }}</p>
-
+      
       <div class="card-actions">
-        <button class="card-button">Fazer</button>
+        <button class="card-button" >Fazer</button>
+        
 
         @if (isAdmin) {
           <button
             class="delete-button"
             (click)="deleteQuiz(quizz.id)"
             [disabled]="isDeleting(quizz.id)">
-
+            
             @if (isDeleting(quizz.id)) {
               <mat-spinner diameter="20" color="accent"></mat-spinner>
             } @else {

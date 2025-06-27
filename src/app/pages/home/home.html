@@ -4,7 +4,6 @@
       <div class="internal_container">
         <div class="internal_profile">
           @if (userProfile.userProfile) {
-            <img [src]="userProfile.userProfile" [alt]="userProfile.name">
           } @else {
             <div class="avatar-fallback">
               {{ getInitial(userProfile.name) }}
@@ -27,5 +26,6 @@
 
   <div class="main_section">
     <app-card-quiz></app-card-quiz>
+    
   </div>
 </main>

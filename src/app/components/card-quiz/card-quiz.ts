@@ -5,6 +5,7 @@ import { Quizz } from '../../models/quizz.dto';
 import { AuthService } from '../../services/auth';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { StyledQuiz } from "../styled-quiz/styled-quiz";
 
 @Component({
   selector: 'app-card-quiz',
@@ -12,12 +13,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatProgressSpinnerModule
-  ],
+    MatProgressSpinnerModule,
+    StyledQuiz
+],
   templateUrl: './card-quiz.html',
   styleUrl: './card-quiz.css'
 })
 export class CardQuiz implements OnInit {
+
   quizzes: Quizz[] = [];
   isAdmin = false;
   deletingIds = new Set<number>();

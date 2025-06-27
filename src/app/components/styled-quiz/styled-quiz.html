@@ -1,0 +1,38 @@
+<div class="quiz-wrapper">
+  <!-- Barra de progresso -->
+  <div class="progress-bar">
+    <ng-container *ngFor="let q of questions; let i = index">
+      <div class="step" [class.active]="i <= currentIndex">
+        <span>{{ i + 1 }}</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Enunciado -->
+  <div class="question-banner">
+    <h3>{{ currentQuestion.question }}</h3>
+  </div>
+
+  <!-- Alternativas -->
+  <div class="options">
+   <button
+       *ngFor="let opt of currentQuestion.options"
+        (click)="selectOption(opt.key)"
+       [n gClass]="{
+        'selected': selectedOption === opt.key,
+        'correct': selectedOption && opt.key === currentQuestion.correct,
+        'wrong': selectedOption && opt.key !== currentQuestion.correct
+      }"
+    >
+    <strong>{{ opt.key }}.</strong> {{ opt.label }}
+    </button>
+  </div>
+
+  <!-- Navegação -->
+  <div class="navigation">
+    <button (click)="prev()" [disabled]="currentIndex === 0">◀ Previous</button>
+    <div class="timer" [class.warning]="timer <= 10">{{ timer }}</div>
+    <button (click)="next()" [disabled]="!selectedOption">Next ▶</button>
+  </div>
+</div>
+

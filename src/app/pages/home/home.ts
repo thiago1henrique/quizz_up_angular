@@ -4,14 +4,16 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { ProfileService, UserProfile } from '../../services/ProfileService';
 import { CardQuiz } from '../../components/card-quiz/card-quiz';
+import { StyledQuiz } from "../../components/styled-quiz/styled-quiz";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
-    CardQuiz
-  ],
+    CardQuiz,
+    StyledQuiz
+],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

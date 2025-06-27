@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Splashscreen } from './pages/splashscreen/splashscreen';
+//import { Splashscreen } from './pages/splashscreen/splashscreen';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,101 @@
+.quiz-wrapper {
+  max-width: 700px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.step {
+  width: 32px;
+  height: 32px;
+  background: #ccc;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step.active {
+  background: #fbbc04;
+}
+
+.question-banner {
+  background-color: #fbbc04;
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+
+.options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.options button {
+  min-width: 120px;
+  padding: 1rem;
+  border: none;
+  font-weight: bold;
+  background: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.options button.selected {
+  background-color: #ffe58f;
+}
+
+.options button.correct {
+  background-color: #a0e0a9;
+}
+
+.options button.wrong {
+  background-color: #f8a1a1;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation button {
+  padding: 0.8rem 1.5rem;
+  background-color: #fbbc04;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+}
+
+.navigation .timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  background: #f3f3f3;
+  border: 2px solid #fbbc04;
+  color: #333;
+}
+
+.navigation .timer.warning {
+  background: #ff4d4f;
+  color: white;
+  border-color: #d9363e;
+}

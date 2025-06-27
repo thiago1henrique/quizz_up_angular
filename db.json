@@ -1,0 +1,135 @@
+{
+  "profile": [
+    {
+      "id": "1",
+      "userProfile": "https://avatars.githubusercontent.com/u/89605077?v=4",
+      "name": "Thiago Henrique",
+      "email": "thiago@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "2",
+      "userProfile": "",
+      "name": "Administrador",
+      "email": "admin@gmail.com",
+      "password": "1",
+      "isAdmin": true
+    },
+    {
+      "id": "5051",
+      "name": "henrique",
+      "email": "henrique@gmail.com",
+      "password": "12346tyu",
+      "userProfile": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "5348",
+      "name": "thiago",
+      "email": "thiagoo@gmail.com",
+      "password": "123456",
+      "userProfile": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "9726",
+      "name": "berow",
+      "email": "berow@gmail.com",
+      "password": "123456",
+      "userProfile": "https://via.placeholder.com/150"
+    }
+  ],
+  "quizzers": [
+    {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png",
+      "title": "Javascript",
+      "description": "Teste de descrição",
+      "id": "1b73"
+    },
+    {
+      "image": "https://i0.wp.com/junilearning.com/wp-content/uploads/2020/06/python-programming-language.webp?fit=1920%2C1920&ssl=1",
+      "title": "python",
+      "description": "python",
+      "id": "7fee"
+    },
+    {
+      "image": "https://ensinado.com.br/wp-content/uploads/2021/06/java_logo_640.jpg",
+      "title": "Java",
+      "description": "Java",
+      "id": "cb72"
+    },
+    {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png",
+      "title": "Javascript",
+      "description": "Teste de descrição",
+      "id": "d37b"
+    },
+    {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Typescript.svg/1200px-Typescript.svg.png",
+      "title": "Typescript",
+      "description": "Typescript",
+      "id": "4706"
+    },
+    {
+      "image": "https://i0.wp.com/junilearning.com/wp-content/uploads/2020/06/python-programming-language.webp?fit=1920%2C1920&ssl=1",
+      "title": "python",
+      "description": "python",
+      "id": "2f5b"
+    },
+    {
+      "image": "https://ensinado.com.br/wp-content/uploads/2021/06/java_logo_640.jpg",
+      "title": "Java",
+      "description": "Java",
+      "id": "ea36"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "topic": "javascript",
+      "question": "Qual palavra-chave é usada para declarar uma variável em JavaScript?",
+      "options": [
+        { "key": "A", "label": "var" },
+        { "key": "B", "label": "int" },
+        { "key": "C", "label": "float" },
+        { "key": "D", "label": "constante" }
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 2,
+      "topic": "python",
+      "question": "Como se define uma função em Python?",
+      "options": [
+        { "key": "A", "label": "function nome():" },
+        { "key": "B", "label": "def nome():" },
+        { "key": "C", "label": "fun nome():" },
+        { "key": "D", "label": "define nome():" }
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 3,
+      "topic": "java",
+      "question": "Qual tipo primitivo representa números decimais em Java?",
+      "options": [
+        { "key": "A", "label": "int" },
+        { "key": "B", "label": "float" },
+        { "key": "C", "label": "char" },
+        { "key": "D", "label": "boolean" }
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 4,
+      "topic": "typescript",
+      "question": "O TypeScript é um superset de qual linguagem?",
+      "options": [
+        { "key": "A", "label": "Java" },
+        { "key": "B", "label": "C#" },
+        { "key": "C", "label": "JavaScript" },
+        { "key": "D", "label": "Python" }
+      ],
+      "correct": "C"
+    }
+  ]
+
+}
