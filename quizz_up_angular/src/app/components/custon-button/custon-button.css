@@ -1,0 +1,9 @@
+.buttonCuston {
+  background: #a259ff;
+  color: #fff !important;
+  min-width: 120px;
+}
+
+.buttonCuston:hover{
+  background: #f24e1e;
+}

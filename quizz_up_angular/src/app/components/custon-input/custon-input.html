@@ -1,0 +1,15 @@
+<mat-form-field class="teste" appearance="outline">
+  <mat-label class="§">{{ label }}</mat-label>
+  <input
+    class="input_custom_test"
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onChange($any($event.target).value)"
+    (blur)="onTouched()"
+    [disabled]="isDisabled">
+</mat-form-field>
+@if (error) {
+  <div class="error-message">{{ error }}</div>
+}

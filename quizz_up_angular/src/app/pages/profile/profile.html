@@ -1,0 +1,92 @@
+<div class="profile-container">
+  <app-header></app-header>
+
+  @if (isLoading) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Carregando perfil...</p>
+    </div>
+  }
+
+  @if (!isLoading && user) {
+    <div class="profile-content">
+      <div class="profile-header">
+        <h1 class="profile-title">Olá, {{ user.name }}!</h1>
+        <p class="profile-subtitle">Acompanhe seu progresso e histórico de quizzes</p>
+      </div>
+
+      <div class="stats-container">
+        <mat-card class="stat-card">
+          <div class="stat-value">{{ totalQuizzes }}</div>
+          <div class="stat-label">Quizzes</div>
+        </mat-card>
+        <mat-card class="stat-card">
+          <div class="stat-value">{{ successRate }}%</div>
+          <div class="stat-label">Taxa de acerto</div>
+        </mat-card>
+      </div>
+
+      <div class="history-section">
+        <h2 class="history-title">
+          <mat-icon>history</mat-icon>
+          Seu histórico
+        </h2>
+
+        @if (quizHistory.length === 0) {
+          <p class="empty-history">Você ainda não completou nenhum quiz.</p>
+        } @else {
+          <div class="history-list">
+            @for (attempt of quizHistory; track attempt.id) {
+              <mat-card class="history-item">
+                <div class="quiz-info">
+                  <img [src]="attempt.quizLogo || 'https://cdn-icons-png.flaticon.com/512/3409/3409310.png'"
+                       [alt]="attempt.quizTitle || 'Quiz'" class="quiz-logo">
+
+                  <div class="quiz-details">
+                    <h3 class="quiz-title">{{ attempt.quizTitle || 'Quiz' }}</h3>
+                    <p class="quiz-date">Realizado em: {{ formatDate(attempt.createdAt) }}</p>
+
+                    <div class="quiz-progress">
+                      <mat-progress-bar
+                        mode="determinate"
+                        [value]="getPercentage(attempt)">
+                      </mat-progress-bar>
+
+                      <div class="progress-info">
+                        <span>{{ attempt.score }} de {{ attempt.totalQuestions }} corretas</span>
+                        <span>{{ getPercentage(attempt) }}%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quiz-badge" [ngClass]="getBadgeClass(attempt)">
+                  {{ getBadgeText(attempt) }}
+                </div>
+              </mat-card>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="actions-container">
+        <button mat-raised-button color="primary" class="action-button" routerLink="/home">
+          <mat-icon>add</mat-icon>
+          Fazer novo quiz
+        </button>
+        <button mat-raised-button color="warn" class="action-button" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Sair da conta
+        </button>
+      </div>
+    </div>
+  }
+
+  @if (error && !isLoading) {
+    <div class="error-container">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button color="primary" (click)="refreshProfile()">Tentar novamente</button>
+    </div>
+  }
+</div>

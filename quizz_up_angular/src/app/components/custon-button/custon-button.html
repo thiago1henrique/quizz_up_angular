@@ -1,0 +1,16 @@
+<button
+  mat-raised-button
+  color="primary"
+  [type]="type"
+  [disabled]="disabled || loading"
+  [routerLink]="rota ? rota : null">
+
+  @if (!loading) {
+    <span>{{ texto }}</span>
+  }
+  @if (loading) {
+    <span>
+      <mat-spinner diameter="20" color="accent"></mat-spinner>
+    </span>
+  }
+</button>

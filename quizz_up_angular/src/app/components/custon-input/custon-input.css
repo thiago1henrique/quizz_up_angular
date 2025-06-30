@@ -1,0 +1,49 @@
+.teste {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  min-width: 300px;
+  color: #16161d;
+}
+
+/* Cor do label flutuante */
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch .mat-mdc-floating-label {
+  color: #16161d !important;
+}
+
+/* Cor do texto do input */
+.input_custom_test {
+  color: #16161d !important;
+}
+
+/* Cor do placeholder (quando não está em foco) */
+.mat-mdc-input-element::placeholder {
+  color: #6b7280 !important; /* Cinza médio/escuro */
+  opacity: 1 !important;
+}
+
+/* Cor do placeholder quando o input está em foco */
+.mat-mdc-form-field.mat-focused .mat-mdc-input-element::placeholder {
+  color: #4b5563 !important; /* Cinza mais escuro */
+}
+
+/* Cor da borda do outline */
+.mat-mdc-outlined-input:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mat-mdc-outlined-input:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mat-mdc-outlined-input:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: #d1d5db !important; /* Cinza claro para a borda */
+}
+
+/* Cor da borda quando em foco */
+.mat-mdc-outlined-input:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+.mat-mdc-outlined-input:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+.mat-mdc-outlined-input:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #4f46e5 !important; /* Cor primária para o foco */
+}
+
+/* Estilo para mensagem de erro */
+.error-message {
+  color: #ef4444; /* Vermelho para erros */
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}

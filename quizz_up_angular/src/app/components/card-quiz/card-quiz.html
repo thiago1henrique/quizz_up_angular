@@ -1,0 +1,30 @@
+<div class="card-container">
+  @for (quizz of quizzes; track quizz.id) {
+    <div class="card">
+      <img [src]="quizz.image" [alt]="'Logo do ' + quizz.title">
+      <h2>{{ quizz.title }}</h2>
+      <p>{{ quizz.description }}</p>
+
+      <div class="card-actions">
+        <!-- Botão "Fazer" com navegação dinâmica -->
+        <button class="card-button" (click)="startQuiz(quizz.id)">Fazer</button>
+
+        @if (isAdmin) {
+          <button
+            class="delete-button"
+            (click)="deleteQuiz(quizz.id)"
+            [disabled]="isDeleting(quizz.id)">
+
+            @if (isDeleting(quizz.id)) {
+              <mat-spinner diameter="20" color="accent"></mat-spinner>
+            } @else {
+              Excluir
+            }
+          </button>
+        }
+      </div>
+    </div>
+  } @empty {
+    <p class="no-quizzes">Nenhum quiz disponível no momento.</p>
+  }
+</div>

@@ -1,0 +1,33 @@
+<header>
+  @if (userProfile) {
+    <div class="internal_container">
+      <div class="internal_profile">
+        @if (userProfile.userProfile) {
+          <img [src]="userProfile.userProfile" [alt]="'Foto de ' + userProfile.name">
+        } @else {
+          <div class="avatar-fallback">
+            {{ getInitial(userProfile.name) }}
+          </div>
+        }
+        <p class="mobile"><b>Olá</b> {{ userProfile.name }} 👋</p>
+      </div>
+
+      <ul>
+        @if (isProfilePage) {
+          <li><a routerLink="/home"><b>Home</b></a></li>
+        } @else {
+          <li><a routerLink="/profile"><b>Perfil</b></a></li>
+        }
+        <li><a (click)="logout()" class="logOut">Sair</a></li>
+      </ul>
+    </div>
+  } @else {
+    <div class="internal_container">
+      @if (authService.isAuthenticated()) {
+        <p>Carregando perfil...</p>
+      } @else {
+        <a routerLink="/login">Entrar</a>
+      }
+    </div>
+  }
+</header>

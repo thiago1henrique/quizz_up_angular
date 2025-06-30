@@ -1,0 +1,45 @@
+<app-header></app-header>
+<main class="container">
+  <div>
+    <div style="padding-top: 3rem" class="container_input">
+      <img #imagePreview src="#" alt="logo">
+      <label>Insira a imagem de seu quizz</label>
+      <input type="file" name="imagem" id="image" (change)="previewImage($event)">
+    </div>
+
+    <div>
+      <label style="display: block; padding-bottom: 0.8rem">Insira uma breve descrição</label>
+      <app-custon-input label="Insira uma descrição" ></app-custon-input>
+    </div>
+
+    <div>
+      <label style="display: block; padding-bottom: 0.8rem">Titulo da pergunta</label>
+      <app-custon-input label="Insira o titulo da questão" ></app-custon-input>
+    </div>
+
+    <div style="padding-top: 3rem">
+      <label style="display: block; padding-bottom: 0.8rem">Alternativa 1</label>
+      <app-custon-input label="Alternativa 1" ></app-custon-input>
+    </div>
+
+    <div style="padding-top: 1rem">
+      <label style="display: block; padding-bottom: 0.8rem">Alternativa 2</label>
+      <app-custon-input label="Alternativa 1" ></app-custon-input>
+    </div>
+
+    <div style="padding-top: 1rem">
+      <label style="display: block; padding-bottom: 0.8rem">Alternativa 3</label>
+      <app-custon-input label="Alternativa 1" ></app-custon-input>
+    </div>
+
+    <div style="padding-top: 1rem">
+      <label style="display: block; padding-bottom: 0.8rem">Alternativa 4</label>
+      <app-custon-input label="Alternativa 1" ></app-custon-input>
+    </div>
+  </div>
+
+  <div>
+    <app-custon-button texto="Questão anterior"></app-custon-button>
+    <app-custon-button texto="Proxima questão"></app-custon-button>
+  </div>
+</main>

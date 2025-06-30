@@ -1,0 +1,47 @@
+<main class="container">
+  <div class="left_container">
+    <h1 class="logo">Cadastro</h1>
+    <p>Precisamos de suas informações!</p>
+    <p>Já tem uma conta? <a routerLink="/login">Efetue seu login!</a></p>
+
+    <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+      <div class="input_container">
+        <app-custon-input
+          type="text"
+          label="Seu nome"
+          formControlName="name"
+          [error]="cadastroForm.get('name')?.invalid && cadastroForm.get('name')?.touched ? 'Nome inválido (mín. 3 caracteres)' : ''">
+        </app-custon-input>
+
+        <app-custon-input
+          type="email"
+          label="Seu melhor email"
+          formControlName="email"
+          [error]="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched ? 'Email inválido' : ''">
+        </app-custon-input>
+
+        <app-custon-input
+          type="password"
+          label="Insira sua senha"
+          formControlName="password"
+          [error]="cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched ? 'Senha inválida (mín. 6 caracteres)' : ''">
+        </app-custon-input>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div>
+        <app-custon-button
+          texto="Criar conta"
+          type="submit"
+          [disabled]="cadastroForm.invalid || loading"
+          [loading]="loading">
+        </app-custon-button>
+      </div>
+    </form>
+  </div>
+
+  <div class="right_container"></div>
+</main>

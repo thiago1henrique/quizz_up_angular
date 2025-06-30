@@ -1,0 +1,33 @@
+<main class="container">
+  <div class="left_container">
+    <h1 class="logo">Login</h1>
+    <p>Não tem uma conta? <a routerLink="/cadastro">Crie uma!</a></p>
+    <p>Utilize seu email e senha!</p>
+
+    <div *ngIf="loginError" class="error-message">
+      {{ loginError }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input_container">
+        <app-custon-input
+          type="email"
+          label="Email"
+          formControlName="email">
+        </app-custon-input>
+        <app-custon-input
+          type="password"
+          label="Senha"
+          formControlName="senha">
+        </app-custon-input>
+      </div>
+      <div>
+        <app-custon-button
+          texto="Login"
+          type="submit">
+        </app-custon-button>
+      </div>
+    </form>
+  </div>
+  <div class="right_container"></div>
+</main>

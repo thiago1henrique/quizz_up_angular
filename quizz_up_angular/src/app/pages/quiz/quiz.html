@@ -1,0 +1,87 @@
+<div class="quiz-container">
+  <!-- Estado de carregamento -->
+  @if (isLoading) {
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Carregando quiz...</p>
+    </div>
+  }
+
+  <!-- Estado de erro -->
+  @if (error && !isLoading) {
+    <div class="error">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button color="primary" (click)="loadQuiz()">Tentar novamente</button>
+    </div>
+  }
+
+  <!-- Conteúdo principal do quiz -->
+  @if (!isLoading && !error && quiz) {
+    <div class="quiz-content">
+      <div class="quiz-header">
+        <h1>{{ quiz.title }}</h1>
+        <p>{{ quiz.description }}</p>
+      </div>
+
+      <!-- Exibição da pergunta atual -->
+      @if (!showResults) {
+        <div class="question-container">
+          <div class="progress">
+            Pergunta {{ currentQuestionIndex + 1 }} de {{ quiz.questions?.length || 0 }}
+            <mat-progress-bar
+              mode="determinate"
+              [value]="(currentQuestionIndex + 1) / (quiz.questions?.length || 1) * 100">
+            </mat-progress-bar>
+          </div>
+
+          <div class="question">
+            <h2>{{ currentQuestion?.title }}</h2>
+
+            <div class="alternatives">
+              @for (alternative of currentQuestion?.alternatives; track $index) {
+                <button
+                  mat-raised-button
+                  [class.selected]="selectedAnswer === $index"
+                  (click)="selectAnswer($index)">
+                  {{ alternative.text }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="navigation">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="nextQuestion()"
+              [disabled]="selectedAnswer === null">
+              {{ currentQuestionIndex < (quiz.questions?.length || 0) - 1 ? 'Próxima' : 'Finalizar' }}
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- Exibição dos resultados -->
+      @if (showResults) {
+        <div class="results-container">
+          <h2>Resultado do Quiz</h2>
+
+          <div class="score">
+            <p>Você acertou <strong>{{ score }} de {{ quiz.questions?.length }}</strong> perguntas</p>
+            <p class="percentage">{{ (quiz.questions?.length ? (score / quiz.questions.length * 100) : 0).toFixed(0) }}% de acerto</p>
+          </div>
+
+          <div class="badge" [ngClass]="getBadgeClass()">
+            {{ getBadgeText() }}
+          </div>
+
+          <div class="actions">
+            <button mat-raised-button color="primary" (click)="restartQuiz()">Refazer Quiz</button>
+            <button mat-raised-button color="accent" (click)="goToHome()">Voltar para Home</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

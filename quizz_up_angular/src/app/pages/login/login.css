@@ -1,0 +1,75 @@
+.left_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 3rem;
+  width: 50%;
+}
+
+.logo {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+}
+
+.right_container {
+  height: 100%;
+  width: 50%;
+  background-image: url("https://miro.medium.com/v2/resize:fit:1400/0*wepxA0Twy61aP79u");
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 4rem;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+p:nth-child(3) {
+  padding-bottom: 2rem;
+}
+
+.container_buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.input_container {
+  width: 100%;
+}
+
+.error-message {
+  padding: 1rem 0;
+  color: red;
+}
+
+@media (max-width: 950px) {
+
+  .left_container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 4rem;
+  }
+
+  .right_container {
+    display: none;
+  }
+}
