@@ -8,6 +8,7 @@ import { QuizAttempt } from './entities/quiz-attempt.entity';
 import { UsersModule } from './users/users.module';
 import { QuizzesModule } from './quizzes/quizzes.module';
 import { AuthModule } from './auth/auth.module';
+import {QuizAttemptsModule} from "./quiz-attempts/quiz-attempts.module";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     QuizzesModule,
     AuthModule,
+    QuizAttemptsModule
   ],
   controllers: [],
   providers: [
