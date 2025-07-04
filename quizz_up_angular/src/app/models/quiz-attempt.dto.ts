@@ -1,10 +1,11 @@
+import {User} from './user.model';
+import {Quizz} from './quizz.dto';
+
 export interface QuizAttempt {
-  id?: number;
-  userId: number;
-  quizId: number;
+  id: number;
   score: number;
   totalQuestions: number;
-  createdAt?: Date | string;
-  quizTitle?: string;
-  quizLogo?: string;
+  createdAt: Date;
+  user: User;
+  quiz: Quizz;
 }

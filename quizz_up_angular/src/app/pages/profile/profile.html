@@ -39,11 +39,11 @@
             @for (attempt of quizHistory; track attempt.id) {
               <mat-card class="history-item">
                 <div class="quiz-info">
-                  <img [src]="attempt.quizLogo || 'https://cdn-icons-png.flaticon.com/512/3409/3409310.png'"
-                       [alt]="attempt.quizTitle || 'Quiz'" class="quiz-logo">
+                  <img [src]="attempt.quiz.logo || 'https://cdn-icons-png.flaticon.com/512/3409/3409310.png'"
+                       [alt]="attempt.quiz.title || 'Quiz'" class="quiz-logo">
 
                   <div class="quiz-details">
-                    <h3 class="quiz-title">{{ attempt.quizTitle || 'Quiz' }}</h3>
+                    <h3 class="quiz-title">{{ attempt.quiz.title || 'Quiz' }}</h3>
                     <p class="quiz-date">Realizado em: {{ formatDate(attempt.createdAt) }}</p>
 
                     <div class="quiz-progress">

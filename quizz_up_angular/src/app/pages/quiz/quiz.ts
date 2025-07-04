@@ -11,6 +11,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import {CreateQuizAttemptDto} from '../../models/create-quiz-attempt.dto';
 
 @Component({
   selector: 'app-quiz',
@@ -133,13 +134,11 @@ export class QuizComponent implements OnInit {
       return;
     }
 
-    const attempt: QuizAttempt = {
+    const attempt: CreateQuizAttemptDto = {
       userId: this.userId,
       quizId: this.quizId,
       score: this.score,
       totalQuestions: this.quiz.questions.length,
-      quizTitle: this.quiz.title, // Para exibição no perfil
-      quizLogo: this.quiz.logo    // Para exibição no perfil
     };
 
     this.quizAttemptService.createAttempt(attempt).subscribe({

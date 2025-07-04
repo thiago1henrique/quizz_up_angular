@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -60,6 +60,13 @@ export class AuthService {
     );
   }
 
+  getAuthHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.USER_ID_KEY);
@@ -95,15 +102,20 @@ export class AuthService {
       return of(null);
     }
 
-    return this.http.get<User>(`${this.USERS_API_URL}/${userId}`).pipe(
+    return this.http.get<User>(`${this.USERS_API_URL}/${userId}`, {
+      headers: this.getAuthHeaders()
+    }).pipe(
       tap(user => this.saveUserToStorage(user)),
-      catchError(() => of(null))
+      catchError(() => {
+        this.logout();
+        return of(null);
+      })
     );
   }
 
   isAdmin(): Observable<boolean> {
     if (this.currentUser && this.currentUser.role) {
-      return of(this.currentUser.role === 'ADMIN');
+      return of(this.currentUser.role === 'admin');
     }
 
     return this.getUserProfile().pipe(

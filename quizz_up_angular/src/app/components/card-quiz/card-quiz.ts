@@ -26,7 +26,7 @@ export class CardQuiz implements OnInit {
   constructor(
     private quizzService: QuizzService,
     private authService: AuthService,
-    private router: Router // Injetar o Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -71,5 +71,9 @@ export class CardQuiz implements OnInit {
 
   startQuiz(quizId: number): void {
     this.router.navigate(['/quiz', quizId]);
+  }
+
+  editQuiz(quizId: number): void {
+    this.router.navigate(['/newQuiz', quizId]);
   }
 }

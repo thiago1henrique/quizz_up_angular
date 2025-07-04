@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import { QuizAttempt } from '../models/quiz-attempt.dto';
+import {CreateQuizAttemptDto} from '../models/create-quiz-attempt.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class QuizAttemptService {
 
   constructor(private http: HttpClient) {}
 
-  createAttempt(attempt: QuizAttempt): Observable<QuizAttempt> {
+  createAttempt(attempt: CreateQuizAttemptDto): Observable<QuizAttempt> {
     return this.http.post<QuizAttempt>(this.API_URL, attempt).pipe(
       catchError(this.handleError)
     );

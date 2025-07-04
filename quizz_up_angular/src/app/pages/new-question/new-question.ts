@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {NgOptimizedImage} from '@angular/common';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import {Header} from '../../components/header/header';
 import {CustonInput} from '../../components/custon-input/custon-input';
 import {CustonButton} from '../../components/custon-button/custon-button';
@@ -10,7 +10,8 @@ import {CustonButton} from '../../components/custon-button/custon-button';
   imports: [
     Header,
     CustonInput,
-    CustonButton
+    CustonButton,
+    FormsModule // Adicione este import
   ],
   templateUrl: './new-question.html',
   styleUrl: './new-question.css',
@@ -18,6 +19,7 @@ import {CustonButton} from '../../components/custon-button/custon-button';
 })
 export class NewQuestion {
   @ViewChild('imagePreview') imagePreview!: ElementRef<HTMLImageElement>;
+  correctAnswer: string = ''; // Armazena a alternativa correta selecionada
 
   previewImage(event: Event) {
     const input = event.target as HTMLInputElement;

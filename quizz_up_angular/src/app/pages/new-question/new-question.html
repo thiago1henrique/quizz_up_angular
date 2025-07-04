@@ -9,32 +9,44 @@
 
     <div>
       <label style="display: block; padding-bottom: 0.8rem">Insira uma breve descrição</label>
-      <app-custon-input label="Insira uma descrição" ></app-custon-input>
+      <app-custon-input label="Insira uma descrição"></app-custon-input>
     </div>
 
     <div>
       <label style="display: block; padding-bottom: 0.8rem">Titulo da pergunta</label>
-      <app-custon-input label="Insira o titulo da questão" ></app-custon-input>
+      <app-custon-input label="Insira o titulo da questão"></app-custon-input>
     </div>
 
     <div style="padding-top: 3rem">
       <label style="display: block; padding-bottom: 0.8rem">Alternativa 1</label>
-      <app-custon-input label="Alternativa 1" ></app-custon-input>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <app-custon-input label="Alternativa 1"></app-custon-input>
+        <input type="radio" name="correctAnswer" value="1" [(ngModel)]="correctAnswer">
+      </div>
     </div>
 
     <div style="padding-top: 1rem">
       <label style="display: block; padding-bottom: 0.8rem">Alternativa 2</label>
-      <app-custon-input label="Alternativa 1" ></app-custon-input>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <app-custon-input label="Alternativa 2"></app-custon-input>
+        <input type="radio" name="correctAnswer" value="2" [(ngModel)]="correctAnswer">
+      </div>
     </div>
 
     <div style="padding-top: 1rem">
       <label style="display: block; padding-bottom: 0.8rem">Alternativa 3</label>
-      <app-custon-input label="Alternativa 1" ></app-custon-input>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <app-custon-input label="Alternativa 3"></app-custon-input>
+        <input type="radio" name="correctAnswer" value="3" [(ngModel)]="correctAnswer">
+      </div>
     </div>
 
     <div style="padding-top: 1rem">
       <label style="display: block; padding-bottom: 0.8rem">Alternativa 4</label>
-      <app-custon-input label="Alternativa 1" ></app-custon-input>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <app-custon-input label="Alternativa 4"></app-custon-input>
+        <input type="radio" name="correctAnswer" value="4" [(ngModel)]="correctAnswer">
+      </div>
     </div>
   </div>
 
