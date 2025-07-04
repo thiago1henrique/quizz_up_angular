@@ -8,6 +8,10 @@ admin@quizzup.com <br/>
 admin_password_123
 </p>
 
+<p>
+Swagger: http://localhost:3000//docs
+</p>
+
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
