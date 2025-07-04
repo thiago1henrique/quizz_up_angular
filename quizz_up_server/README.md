@@ -3,6 +3,14 @@
 </p>
 
 <p>
+backend python
+https://github.com/DayvisonCavalcanti/back-quiz-python.git
+</p>
+<p>
+https://www.youtube.com/watch?v=sfD_Oz50VDo&feature=youtu.be
+</p>
+
+<p>
 admin login <br/>
 admin@quizzup.com <br/>
 admin_password_123

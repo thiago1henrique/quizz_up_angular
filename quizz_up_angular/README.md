@@ -1,6 +1,14 @@
 # QuizzUp - Plataforma de Quizzes em Angular
 📌 Visão Geral
 
+<p>
+backend python
+https://github.com/DayvisonCavalcanti/back-quiz-python.git
+</p>
+<p>
+https://www.youtube.com/watch?v=sfD_Oz50VDo&feature=youtu.be
+</p>
+
 QuizzUp é uma plataforma interativa de quizzes desenvolvida em Angular com:
 
     Sistema de autenticação
