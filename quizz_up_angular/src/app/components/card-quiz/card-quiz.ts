@@ -16,12 +16,13 @@ import { Router } from '@angular/router';
     MatProgressSpinnerModule
   ],
   templateUrl: './card-quiz.html',
-  styleUrl: './card-quiz.css'
+  styleUrls: ['./card-quiz.css']
 })
 export class CardQuiz implements OnInit {
   quizzes: Quizz[] = [];
   isAdmin = false;
   deletingIds = new Set<number>();
+  loading = true;
 
   constructor(
     private quizzService: QuizzService,
@@ -37,14 +38,20 @@ export class CardQuiz implements OnInit {
   private checkAdminStatus(): void {
     this.authService.isAdmin().subscribe({
       next: (isAdmin) => this.isAdmin = isAdmin,
-      error: (err) => console.error('Erro ao verificar status de admin:', err)
+      error: (err) => console.error('Erro ao verificar admin:', err)
     });
   }
 
   private loadQuizzes(): void {
     this.quizzService.getAllQuizzes().subscribe({
-      next: (data) => this.quizzes = data,
-      error: (err) => console.error('Erro ao carregar quizzes:', err)
+      next: (data) => {
+        this.quizzes = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar quizzes:', err);
+        this.loading = false;
+      }
     });
   }
 
@@ -59,14 +66,10 @@ export class CardQuiz implements OnInit {
         error: (err) => {
           console.error('Erro ao excluir quiz:', err);
           this.deletingIds.delete(quizId);
-          alert('Erro ao excluir quiz. Tente novamente.');
+          alert('Erro ao excluir quiz');
         }
       });
     }
-  }
-
-  isDeleting(quizId: number): boolean {
-    return this.deletingIds.has(quizId);
   }
 
   startQuiz(quizId: number): void {
@@ -74,6 +77,12 @@ export class CardQuiz implements OnInit {
   }
 
   editQuiz(quizId: number): void {
-    this.router.navigate(['/newQuiz', quizId]);
+    this.router.navigate(['/newQuestion', quizId], {
+      state: { editMode: true }
+    });
+  }
+
+  isDeleting(quizId: number): boolean {
+    return this.deletingIds.has(quizId);
   }
 }

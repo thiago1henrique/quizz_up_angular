@@ -28,7 +28,11 @@ export class CustonInput implements ControlValueAccessor {
   value: any = '';
   isDisabled: boolean = false;
 
-  onChange: (value: any) => void = () => {};
+  onChange(value: any) {
+    this.value = value;
+    console.log("onChange", value);
+  }
+
   onTouched: () => void = () => {};
 
   writeValue(value: any): void {

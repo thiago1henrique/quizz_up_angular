@@ -13,6 +13,10 @@
       </div>
 
       <ul>
+        @if (isAdmin) {
+          <li><a routerLink="/newQuestion"><b>Criar Quiz</b></a></li>
+        }
+
         @if (isProfilePage) {
           <li><a routerLink="/home"><b>Home</b></a></li>
         } @else {

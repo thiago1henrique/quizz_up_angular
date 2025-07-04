@@ -1,57 +1,116 @@
 <app-header></app-header>
 <main class="container">
-  <div>
-    <div style="padding-top: 3rem" class="container_input">
-      <img #imagePreview src="#" alt="logo">
-      <label>Insira a imagem de seu quizz</label>
-      <input type="file" name="imagem" id="image" (change)="previewImage($event)">
-    </div>
-
+  @if (currentQuestion === 0) {
     <div>
-      <label style="display: block; padding-bottom: 0.8rem">Insira uma breve descrição</label>
-      <app-custon-input label="Insira uma descrição"></app-custon-input>
-    </div>
+      <div style="padding-top: 3rem" class="container_input">
+        <img #imagePreview src="#" alt="Logo do Quiz">
+        <label>Insira a imagem de seu quizz</label>
+        <input type="file" name="imagem" id="image" (change)="previewImage($event)" accept="image/*">
+        @if (showErrors && !quizData.logo) {
+          <div class="error-message">A imagem do quiz é obrigatória</div>
+        }
+      </div>
 
+      <div>
+        <label style="display: block; padding-bottom: 0.8rem">Título do Quiz</label>
+        <app-custon-input
+          label="Título do Quiz"
+          [(ngModel)]="quizData.title"
+          [ngModelOptions]="{standalone: false}"
+          [class.invalid-field]="showErrors && !quizData.title?.trim()">
+        </app-custon-input>
+        @if (showErrors && !quizData.title?.trim()) {
+          <div class="error-message">O título do quiz é obrigatório</div>
+        }
+      </div>
+
+      <div>
+        <label style="display: block; padding-bottom: 0.8rem">Descrição do Quiz</label>
+        <app-custon-input
+          label="Descrição do Quiz"
+          [(ngModel)]="quizData.description"
+          [ngModelOptions]="{standalone: false}"
+          [class.invalid-field]="showErrors && !quizData.description?.trim()">
+        </app-custon-input>
+        @if (showErrors && !quizData.description?.trim()) {
+          <div class="error-message">A descrição do quiz é obrigatória</div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (currentQuestion > 0 && currentQuestion <= totalQuestions) {
     <div>
-      <label style="display: block; padding-bottom: 0.8rem">Titulo da pergunta</label>
-      <app-custon-input label="Insira o titulo da questão"></app-custon-input>
-    </div>
+      <h2>Questão {{ currentQuestion }}</h2>
 
-    <div style="padding-top: 3rem">
-      <label style="display: block; padding-bottom: 0.8rem">Alternativa 1</label>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <app-custon-input label="Alternativa 1"></app-custon-input>
-        <input type="radio" name="correctAnswer" value="1" [(ngModel)]="correctAnswer">
+      <div>
+        <label style="display: block; padding-bottom: 0.8rem">Enunciado da questão</label>
+        <input
+          label="Enunciado da questão"
+          [(ngModel)]="this.questions[currentQuestion - 1].title"
+          [ngModelOptions]="{standalone: false}"
+          [class.invalid-field]="showErrors && !questions[currentQuestion - 1].title?.trim()"
+        >
+
+        @if (showErrors && !questions[currentQuestion - 1].title?.trim()) {
+          <div class="error-message">O enunciado da questão é obrigatório</div>
+        }
       </div>
-    </div>
 
-    <div style="padding-top: 1rem">
-      <label style="display: block; padding-bottom: 0.8rem">Alternativa 2</label>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <app-custon-input label="Alternativa 2"></app-custon-input>
-        <input type="radio" name="correctAnswer" value="2" [(ngModel)]="correctAnswer">
-      </div>
+      @for (alternative of questions[currentQuestion - 1].alternatives; track alternative.id) {
+        <div style="padding-top: 1rem">
+          <label style="display: block; padding-bottom: 0.8rem">Alternativa {{ $index + 1 }}</label>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <app-custon-input
+              [label]="'Alternativa ' + ($index + 1)"
+              [(ngModel)]="alternative.text"
+              [ngModelOptions]="{standalone: false}"
+              [class.invalid-field]="showErrors && !alternative.text?.trim()">
+            </app-custon-input>
+            <input
+              type="radio"
+              name="correctAnswer{{currentQuestion}}"
+              [checked]="alternative.isCorrect"
+              (change)="setCorrectAnswer(currentQuestion - 1, $index)">
+          </div>
+          @if (showErrors && !alternative.text?.trim()) {
+            <div class="error-message">A alternativa é obrigatória</div>
+          }
+        </div>
+      }
     </div>
+  }
 
-    <div style="padding-top: 1rem">
-      <label style="display: block; padding-bottom: 0.8rem">Alternativa 3</label>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <app-custon-input label="Alternativa 3"></app-custon-input>
-        <input type="radio" name="correctAnswer" value="3" [(ngModel)]="correctAnswer">
-      </div>
+  @if (showErrors) {
+    <div class="global-error-message">
+      Por favor, preencha todos os campos obrigatórios marcados em vermelho.
     </div>
+  }
 
-    <div style="padding-top: 1rem">
-      <label style="display: block; padding-bottom: 0.8rem">Alternativa 4</label>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <app-custon-input label="Alternativa 4"></app-custon-input>
-        <input type="radio" name="correctAnswer" value="4" [(ngModel)]="correctAnswer">
-      </div>
-    </div>
-  </div>
+  <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+    <app-custon-button
+      texto="Anterior"
+      (click)="prevQuestion()"
+      [disabled]="currentQuestion === 0 || isLoading">
+    </app-custon-button>
 
-  <div>
-    <app-custon-button texto="Questão anterior"></app-custon-button>
-    <app-custon-button texto="Proxima questão"></app-custon-button>
+    @if (currentQuestion < totalQuestions) {
+      <app-custon-button
+        texto="Próxima"
+        (click)="nextQuestion()"
+        [disabled]="isLoading">
+      </app-custon-button>
+    }
+
+    @if (currentQuestion === totalQuestions) {
+      <app-custon-button
+        texto="Finalizar Quiz"
+        (click)="submitQuiz()"
+        [disabled]="isLoading">
+        @if (isLoading) {
+          <span class="button-spinner"></span>
+        }
+      </app-custon-button>
+    }
   </div>
 </main>

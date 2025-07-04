@@ -22,6 +22,20 @@ export class QuizzService {
     });
   }
 
+  createQuiz(formData: FormData, token: string): Observable<Quizz> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<Quizz>(this.apiUrl, formData, { headers });
+  }
+
+  updateQuiz(id: number, formData: FormData): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, formData, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   getAllQuizzes(): Observable<Quizz[]> {
     return this.http.get<Quizz[]>(this.apiUrl, {
       headers: this.getAuthHeaders()

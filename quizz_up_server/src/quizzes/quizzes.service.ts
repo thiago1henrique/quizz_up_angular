@@ -2,15 +2,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Quiz } from '../entities/quiz.entity';
-import { QuizAttempt } from '../entities/quiz-attempt.entity'; 
+import { QuizAttempt } from '../entities/quiz-attempt.entity';
 
 @Injectable()
 export class QuizzesService {
   constructor(
-    @InjectRepository(Quiz)
-    private quizzesRepository: Repository<Quiz>,
-    @InjectRepository(QuizAttempt) 
-    private quizAttemptRepository: Repository<QuizAttempt>,
+      @InjectRepository(Quiz)
+      private quizzesRepository: Repository<Quiz>,
+      @InjectRepository(QuizAttempt)
+      private quizAttemptRepository: Repository<QuizAttempt>,
   ) {}
 
   async create(quizData: Partial<Quiz>): Promise<Quiz> {
@@ -25,20 +25,20 @@ export class QuizzesService {
   async findOne(id: number): Promise<Quiz | null> {
     const quiz = await this.quizzesRepository.findOne({ where: { id } });
     if (!quiz) {
-      return null; 
+      return null;
     }
     return quiz;
   }
 
-  async update(id: number, updateData: Partial<Quiz>): Promise<Quiz> {
-    const quiz = await this.quizzesRepository.preload({
+  async update(id: number, updateData: Partial<Quiz>) {
+    const quiz = await this.quizzesRepository.findOneBy({
       id: id,
-      ...updateData,
+
     });
     if (!quiz) {
       throw new NotFoundException(`Quiz com ID ${id} não encontrado para atualização.`);
     }
-    return this.quizzesRepository.save(quiz);
+     await this.quizzesRepository.update(id, updateData);
   }
 
   async remove(id: number): Promise<void> {
@@ -46,7 +46,6 @@ export class QuizzesService {
     if (result.affected === 0) {
       throw new NotFoundException(`Quiz com ID ${id} não encontrado para exclusão.`);
     }
-    console.log(`Quiz com ID ${id} foi deletado.`);
   }
 
   async createResult(data: {
