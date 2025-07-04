@@ -17,7 +17,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
       .setTitle("Quiz")
       .setDescription(
-          "API docs for the videogame catalog system GameNode. <br><br>Built with love by the GameNode team.",
+          "Lista de endpoints do quizzup",
       )
       .setVersion("1.0")
       .build();
